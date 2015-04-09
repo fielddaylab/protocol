@@ -27,6 +27,19 @@
 				$('#message').val('');
 			});
 
+			socket.on('disconnect', function()
+			{
+				$('#messages').html('');
+
+			});
+
+			socket.on('player remove', function(player)
+			{
+				console.log("REMOVE");
+				var player_element = "#"+player;
+				$(player_element).remove();
+			});
+
 			socket.on('broadcast player message', function(player, message)
 			{
 				var player_element = "#"+player;

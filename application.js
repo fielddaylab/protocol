@@ -24,16 +24,28 @@ io.on('connection', function(socket)
 {
 	players[socket.id] = new Player(socket.id);
 
-	// Send all current state
+	// Send all current state to new player.
+	for(var player_id in players)
+	{
+		var player = players[player_id];
+		socket.emit('broadcast player message', player.name, player.color_value);
+	}
+
+	// send new player to all others
+	socket.broadcast.emit('broadcast player message', players[socket.id].name, players[socket.id].color_value);
+
 
 	socket.on('disconnect', function()
 	{
+		io.emit('player remove', players[socket.id].name);
 		delete players[socket.id];
 	});
 
 
 	socket.on('player message', function(message)
 	{
+		players[socket.id].color_value = message;
+
 		io.emit('broadcast player message', players[socket.id].name, message);
 	});
 });
