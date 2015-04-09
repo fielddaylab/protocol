@@ -1,0 +1,10 @@
+{
+  "name": "protocol",
+  "version": "1.0.0",
+  "description": "protocol game",
+  "main": "application.js",
+  "dependencies": {
+    "express": "^4.12.3",
+    "socket.io": "^1.3.5"
+  }
+}
