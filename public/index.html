@@ -23,13 +23,22 @@
 			{
 				event.preventDefault();
 
-				socket.emit('chat message', $('#message').val());
+				socket.emit('player message', $('#message').val());
 				$('#message').val('');
 			});
 
-			socket.on('chat message', function(message)
+			socket.on('broadcast player message', function(player, message)
 			{
-				$('#messages').append($('<li>').text(message));
+				var player_element = "#"+player;
+
+				if($(player_element).length > 0)
+				{
+					$(player_element).text("["+player+"] "+message);
+				}
+				else
+				{
+					$('#messages').append($('<li id='+player+'>').text("["+player+"]"+message));
+				}
 			});
 		</script>
 	</body>
