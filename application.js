@@ -6,7 +6,7 @@ var path = require('path');
 
 var Player = function(name)
 {
-	this.color_value = "white";
+	this.color_value = "black";
 	this.name = name;
 	// tone value
 	// History log here
@@ -15,6 +15,7 @@ var Player = function(name)
 var players = {};
 
 app.use("/scripts", express.static(__dirname + '/public/scripts'));
+app.use("/styles",  express.static(__dirname + '/public/styles'));
 
 app.get('/', function(request, response)
 {

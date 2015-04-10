@@ -1,0 +1,16 @@
+.box {
+	float: left;
+	height: 64px;
+	width: 64px;
+}
+.clear {
+	clear: both;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li {
+	margin-bottom: 5px;
+}
