@@ -1,14 +1,16 @@
 var protocol_begin = function()
 {
+	/* IOS fixes for touch */
+	document.addEventListener("touchstart", function() {},false);
+
+
+
 	var socket = io();
 	var my_player_id = null;
 
-	$('form').submit(function(event)
-	{
-		event.preventDefault();
-
-		socket.emit('player message', $('#message').val());
-	});
+	//socket.emit('player message', $('#message').val());
+	//
+	
 
 	socket.on('disconnect', function()
 	{

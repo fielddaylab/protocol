@@ -43,3 +43,8 @@ button#key:active {
 button#key img {
 	height: 75%;
 }
+
+/* IOS Fix */
+html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

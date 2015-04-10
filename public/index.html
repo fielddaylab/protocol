@@ -8,6 +8,8 @@
 		<script src="scripts/protocol.js"></script>
 		<script src="scripts/md5.js"></script>
 		<link rel="stylesheet" href="styles/protocol.css">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	</head>
 
 	<body>
@@ -17,9 +19,14 @@
 
 		<form action="" class="input_area">
 			<button type="button" id="key">
-				<img src="images/square.png"></img>
+				<img src="static/square.png"></img>
 			</button>
 		</form>
+
+		<audio id="tone">
+		  <source src="static/700hz.mp3" type="audio/mpeg">
+		  Your browser does not support the audio tag.
+		</audio>
 
 		<script>
 			protocol_begin();
