@@ -1,4 +1,5 @@
-var app  = require('express')();
+var express = require('express');
+var app  = express();
 var http = require('http').Server(app);
 var io   = require('socket.io')(http);
 var path = require('path');
@@ -13,6 +14,7 @@ var Player = function(name)
 
 var players = {};
 
+app.use("/scripts", express.static(__dirname + '/public/scripts'));
 
 app.get('/', function(request, response)
 {

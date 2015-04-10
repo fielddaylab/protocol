@@ -5,6 +5,7 @@
 		<title>protocol</title>
 		<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<script src="scripts/md5.js"></script>
 	</head>
 
 	<body>
@@ -18,6 +19,7 @@
 
 		<script>
 			var socket = io();
+			var my_player_id = null;
 
 			$('form').submit(function(event)
 			{
@@ -30,12 +32,15 @@
 			socket.on('disconnect', function()
 			{
 				$('#messages').html('');
+			});
 
+			socket.on('connect', function()
+			{
+				my_player_id = socket.id;
 			});
 
 			socket.on('player remove', function(player)
 			{
-				console.log("REMOVE");
 				var player_element = "#"+player;
 				$(player_element).remove();
 			});
@@ -43,14 +48,16 @@
 			socket.on('broadcast player message', function(player, message)
 			{
 				var player_element = "#"+player;
+				var player_image = "http://www.gravatar.com/avatar/"+md5(player)+"?d=retro&f=y";
+				var player_html  = "<img src='"+player_image+"'> "+message;
 
 				if($(player_element).length > 0)
 				{
-					$(player_element).text("["+player+"] "+message);
+					$(player_element).html(player_html);
 				}
 				else
 				{
-					$('#messages').append($('<li id='+player+'>').text("["+player+"]"+message));
+					$('#messages').append($('<li id='+player+'>').html(player_html));
 				}
 			});
 		</script>
