@@ -6,7 +6,7 @@ var path = require('path');
 
 var Player = function(name)
 {
-	this.color_value = "black";
+	this.color_value = {bits:[]};
 	this.name = name;
 	// tone value
 	// History log here
@@ -32,11 +32,11 @@ io.on('connection', function(socket)
 	for(var player_id in players)
 	{
 		var player = players[player_id];
-		socket.emit('broadcast player message', player.name, player.color_value);
+		socket.emit('broadcast player packet', player.name, player.color_value);
 	}
 
 	// send new player to all others
-	socket.broadcast.emit('broadcast player message', players[socket.id].name, players[socket.id].color_value);
+	socket.broadcast.emit('broadcast player packet', players[socket.id].name, players[socket.id].color_value);
 
 
 	socket.on('disconnect', function()
@@ -46,11 +46,11 @@ io.on('connection', function(socket)
 	});
 
 
-	socket.on('player message', function(message)
+	socket.on('player transmit packet', function(packet)
 	{
-		players[socket.id].color_value = message;
+		players[socket.id].color_value = packet;
 
-		io.emit('broadcast player message', players[socket.id].name, message);
+		io.emit('broadcast player packet', players[socket.id].name, packet);
 	});
 });
 

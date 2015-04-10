@@ -8,6 +8,11 @@ body {
 	height: 64px;
 	width: 64px;
 }
+
+.bit {
+	float: left;
+	height: 64px;
+}
 .clear {
 	clear: both;
 }
