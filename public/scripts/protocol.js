@@ -10,7 +10,19 @@ var protocol_begin = function()
 
 	//socket.emit('player message', $('#message').val());
 	//
-	
+
+	var click_start = ((document.ontouchstart!==null)?'mousedown':'touchstart');
+	var click_end   = ((document.ontouchend!==null)?'mouseup':'touchend');
+
+	$('#key').on(click_start, function()
+	{
+		$('#tone').get(0).play();
+	});
+
+	$('#key').on(click_end, function()
+	{
+		$('#tone').get(0).pause();
+	});
 
 	socket.on('disconnect', function()
 	{

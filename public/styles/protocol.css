@@ -1,5 +1,6 @@
 body {
 	background-color: #ecf0f1;
+	-webkit-user-select: none;
 }
 
 .box {
@@ -34,6 +35,10 @@ button#key {
 	border: 0;
 	border-radius: 3px;
 	box-shadow: #95a5a6 0px 0px 10px;
+	background-image: url("/static/square.png");
+	background-size: auto 75%;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 button#key:active {
