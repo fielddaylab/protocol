@@ -1,3 +1,7 @@
+body {
+	background-color: #ecf0f1;
+}
+
 .box {
 	float: left;
 	height: 64px;
@@ -13,4 +17,29 @@ ul {
 
 li {
 	margin-bottom: 5px;
+}
+
+.input_area {
+	text-align: center;
+	border-top: 1px solid #bdc3c7;
+	padding-top: 10px;
+}
+
+button#key {
+	height: 100px;
+	width: 65%;
+	max-width: 300px;
+	display: inline-block;
+	background-color: #3498db;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: #95a5a6 0px 0px 10px;
+}
+
+button#key:active {
+	background-color: #2980b9;
+}
+
+button#key img {
+	height: 75%;
 }

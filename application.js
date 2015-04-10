@@ -16,6 +16,7 @@ var players = {};
 
 app.use("/scripts", express.static(__dirname + '/public/scripts'));
 app.use("/styles",  express.static(__dirname + '/public/styles'));
+app.use("/images",  express.static(__dirname + '/public/images'));
 
 app.get('/', function(request, response)
 {

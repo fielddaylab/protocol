@@ -8,7 +8,6 @@ var protocol_begin = function()
 		event.preventDefault();
 
 		socket.emit('player message', $('#message').val());
-		$('#message').val('');
 	});
 
 	socket.on('disconnect', function()
