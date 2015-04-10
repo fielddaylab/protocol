@@ -12,8 +12,9 @@ var protocol_begin = function()
 
 	var player_packet  = {bits:[]};
 	var transmit_timer = null;
+	var transmit_delay = 3000;
 	var high_color = "#2980b9";
-	var low_color  = "transparent";
+	var low_color  = "#bdc3c7";
 
 	var click_start = ((document.ontouchstart !== null) ? 'mousedown': 'touchstart');
 	var click_end   = ((document.ontouchend   !== null) ? 'mouseup'  : 'touchend'  );
@@ -49,13 +50,17 @@ var protocol_begin = function()
 		// Off bit
 		player_packet.bits.push({state: low_color, start: Date.now() - player_packet.start});
 
+		// Keep updating as we go
+		player_packet.end = Date.now();
+		player_packet.time = player_packet.end - player_packet.start;
+
 		packet_queue();
 	});
 
 	var packet_queue = function()
 	{
 		clearTimeout(transmit_timer);
-		transmit_timer = setTimeout(packet_send, 3000);
+		transmit_timer = setTimeout(packet_send, transmit_delay);
 	};
 
 	var packet_send = function()
@@ -67,8 +72,6 @@ var protocol_begin = function()
 			player_packet.bits.pop();
 		}
 
-		player_packet.end = Date.now()
-		player_packet.time = player_packet.end - player_packet.start;
 
 		socket.emit('player transmit packet', player_packet);
 		player_packet = {bits:[]};
@@ -98,16 +101,16 @@ var protocol_begin = function()
 	{
 		var player_element = "#"+player;
 		var player_image = "http://www.gravatar.com/avatar/"+md5(player)+"?d=retro&f=y&s=64";
-		var player_html  = "<div class='box'><img src='"+player_image+"'></div> ";
+		var player_html  = "<div class='box'><img src='"+player_image+"'></div><div class='bit_container'>";
 
 		for(var bit in packet.bits)
 		{
-			var width = "25px";
+			var width = ((packet.bits[bit].time/packet.time) * 100) + "%";
 			var color = packet.bits[bit].state;
-			player_html+= "<div class='bit' style='width:"+width+"; background-color:"+color+"'>"+packet.bits[bit].time+"</div>"
+			player_html+= "<div class='bit' style='width:"+width+"; background-color:"+color+"'></div>"
 		}
 
-		    player_html += "<div class='clear'></div>";
+		    player_html += "</div><div class='clear'></div>";
 			//+"<div class='box' style='background-color:"+message+";'>&nbsp;
 
 		if($(player_element).length > 0)

@@ -9,6 +9,11 @@ body {
 	width: 64px;
 }
 
+.bit_container {
+	float: left;
+	width: 75%;
+}
+
 .bit {
 	float: left;
 	height: 64px;
