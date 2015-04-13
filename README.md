@@ -15,4 +15,6 @@ Running
 -------
 * `node .`
 
-This project is licensed under the terms of the MIT license.
+---
+
+_This project is licensed under the terms of the MIT license._
