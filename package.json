@@ -4,6 +4,7 @@
   "description": "protocol game",
   "main": "application.js",
   "repository": "https://github.com/UWMLI/protocol",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.12.3",
     "socket.io": "^1.3.5"
